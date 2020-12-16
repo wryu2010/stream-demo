@@ -127,33 +127,33 @@ public class Demo {
 
         // 字符串连接
         String concat = Stream.of("A", "B", "C", "D").reduce("", String::concat);
-        System.out.println("字符串连接："+concat);
+        System.out.println("字符串连接："+concat);//ABCD
 
         //求最小值，起始值为Double.MAX_VALUE
         double minValue = Stream.of(-1.5, 1.0, -3.0, -2.0).reduce(Double.MAX_VALUE, Double::min);
-        System.out.println("求最小值:"+minValue);
+        System.out.println("求最小值:"+minValue);//-3.0
 
         // 求和，初始值为0
         int sumValue = Stream.of(1, 2, 3, 4).reduce(0, Integer::sum);
-        System.out.println("求和，有初始值：" + sumValue);
+        System.out.println("求和，有初始值：" + sumValue);//10
 
         // 求和，无初始值
         sumValue = Stream.of(1, 2, 3, 4).reduce(Integer::sum).get();
-        System.out.println("求和，无初始值：" + sumValue);
+        System.out.println("求和，无初始值：" + sumValue);//10
     }
 
     private static void testLimitAndSkip() {
-        Stream<String> stream = Stream.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+        Stream<String> stream = Stream.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
 
         // limit方法返回Stream的前面N个元素，skip方法则是扔掉前N个元素
-        stream.limit(10).skip(3).forEach(System.out::println);
+        stream.limit(10).skip(3).forEach(System.out::println);//4, 5, 6, 7, 8, 9, 10
     }
 
     private static void testSorted() {
         Stream<Integer> stream = Stream.of(2,1, 1, 5, 6, 8, 10, 9, 3, 4, 7, 3);
 
         // sorted方法可以对Stream里的元素进行排序，可以先对Stream进行map、filter、limit、skip、distinct减少元素数量后，再排序
-        stream.limit(5).distinct().sorted(Integer::compareTo).forEach(System.out::println);
+        stream.limit(5).distinct().sorted(Integer::compareTo).forEach(System.out::println);//1，2，5，6
 
     }
 
@@ -161,14 +161,14 @@ public class Demo {
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 78);
         // Min方法获取Stream中最小的元素
         Integer min = stream.min(Integer::compareTo).get();
-        System.out.println("最小值："+min);
+        System.out.println("最小值："+min);//1
     }
 
     private static void testMax() {
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 78);
         // Max方法获取Stream中最大的元素
         Integer max = stream.max(Integer::compareTo).get();
-        System.out.println("最大值："+max);
+        System.out.println("最大值："+max);//78
     }
 
     private static void testMatch() {
@@ -180,14 +180,14 @@ public class Demo {
 
         // allMatch方法：Stream中全部元素符合传入的predicate，返回true
         Boolean result = users.stream().allMatch(u -> u.getAge() > 20);
-        System.out.println("是否全部的user的age都大于20：" + result);
+        System.out.println("是否全部的user的age都大于20：" + result);//false
 
         // anyMatch方法：Stream中只要有一个元素符合传入的predicate，返回true
         result = users.stream().anyMatch(u -> u.getAge() > 20);
-        System.out.println("是否存在user的age大于20：" + result);
+        System.out.println("是否存在user的age大于20：" + result);//true
 
         // noneMatch方法：Stream中没有一个元素符合传入的predicate，返回true
         result = users.stream().noneMatch(u -> u.getAge() > 20);
-        System.out.println("是否不存在user的age大于20：" + result);
+        System.out.println("是否不存在user的age大于20：" + result);//false
     }
 }
